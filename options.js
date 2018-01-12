@@ -78,15 +78,15 @@ $(document).ready(function(){
 
     //Rename Category
     $("#categories").on('click','.rename',function(){
-        var confirmation = "<span class=\"floatright\"> Are you sure you want to delete this?\n" +
-            "    <a href=\"#\" class=\"confirm_delete\">Yes</a> | <a href=\"#\" class=\"cancel_delete\">No</a>\n" +
+        var text2;
+        var confirmation = "<span class=\"floatleft\"><a href=\"#\" class=\"confirm_rename\">Done</a> | <a href=\"#\" class=\"cancel_rename\">Cancel</a>\n" +
             "</span>"
         $(this).replaceWith(confirmation);
     });
 
     //Confirmed Deletion
     $("#categories").on('click','.confirm_delete',function(){
-        $(this).closest('div').parent().closest('div').parent().closest('div').remove();
+        $(this).closest('div').parent().closest('div').parent().closest('button').remove();
     });
 
     //Cancelled Deletion
