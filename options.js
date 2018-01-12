@@ -52,7 +52,24 @@ document.getElementById('save').addEventListener('click',
 document.getElementById('add').addEventListener('click',
     add_category);
 $(document).ready(function(){
+
+    //Delete Category Prompt Confirmation
     $("#categories").on('click','.delete',function(){
+        var confirmation = "<span class=\"floatright\"> Are you sure you want to delete this?\n" +
+            "    <a href=\"#\" class=\"confirm_delete\">Yes</a> | <a href=\"#\" class=\"cancel_delete\">No</a>\n" +
+            "</span>"
+        $(this).replaceWith(confirmation);
+    });
+
+    //Confirmed Deletion
+    $("#categories").on('click','.confirm_delete',function(){
         $(this).closest('li').remove();
     });
+
+    //Cancelled Deletion
+    $("#categories").on('click','.cancel_delete',function(){
+        var deletetext = "<span class=\"delete\"><a href=\"#\">Delete</a></span>";
+        $(this).closest('span').replaceWith(deletetext);
+    });
+
 });
