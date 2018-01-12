@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Sorter</title>
+    <style>
+        body {
+            padding: 10px;
+        }
+        .save {
+            float: left;
+        }
+        .defaults {
+            float: right;
+        }
+        .rename {
+            float: left;
+        }
+        .delete, .delete a {
+            float: right;
+            color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+<b>Categories:</b>
+<br>
+<ul id="categories" class="collapsible" data-collapsible="expanded">
+    <li>
+        <div class="collapsible-header">Documents</div>
+        <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+            <hr>
+            <div class="tools">
+                    <span class="rename"><a href="#">Rename</a></span>
+                    <span class="delete"><a href="#">Delete</a></span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="collapsible-header">Pictures</div>
+        <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+            <hr>
+            <div class="tools">
+                <span class="rename"><a href="#">Rename</a></span>
+                <span class="delete"><a href="#">Delete</a></span>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="collapsible-header">Music</div>
+        <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+            <hr>
+            <div class="tools">
+                <span class="rename"><a href="#">Rename</a></span>
+                <span class="delete"><a href="#">Delete</a></span>
+            </div>
+        </div>
+    </li>
+</ul>
+<button class="add_category" id="add">+ Add Category</button>
+
+<div id="status"></div>
+<br>
+<div>
+    <button class="save" id="save">Save</button>
+    <button class="defaults" id="default">Restore Defaults</button>
+</div>
+<br>
+<script src="options.js"></script>
+<script src="materialize.min.js"></script>
+</body>
+</html>
