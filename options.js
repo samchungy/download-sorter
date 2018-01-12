@@ -30,9 +30,9 @@ function restore_options() {
 
 function add_category(){
     console.log("Category Added");
-    var text = "<li>\n" +
-        "        <div class=\"collapsible-header\">New Category</div>\n" +
-        "        <div class=\"collapsible-body\">\n" +
+    var text = "    <div class=\"section\">\n" +
+        "        <button class=\"accordion\">New Category</button>\n" +
+        "        <div class=\"panel\">\n" +
         "            <span>Lorem ipsum dolor sit amet.</span>\n" +
         "            <hr>\n" +
         "            <div class=\"tools\">\n" +
@@ -40,9 +40,13 @@ function add_category(){
         "                <span class=\"delete\"><a href=\"#\">Delete</a></span>\n" +
         "            </div>\n" +
         "        </div>\n" +
-        "    </li>"
+        "    </div>"
 
     $( ".collapsible" ).append( $( text ) );
+}
+
+function add_listener(){
+
 }
 
 
@@ -51,7 +55,18 @@ document.getElementById('save').addEventListener('click',
     save_options);
 document.getElementById('add').addEventListener('click',
     add_category);
+
 $(document).ready(function(){
+    //Category Toggles
+    $("#categories").on('click', '.accordion', function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight){
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+    });
 
     //Delete Category Prompt Confirmation
     $("#categories").on('click','.delete',function(){
@@ -61,9 +76,17 @@ $(document).ready(function(){
         $(this).replaceWith(confirmation);
     });
 
+    //Rename Category
+    $("#categories").on('click','.rename',function(){
+        var confirmation = "<span class=\"floatright\"> Are you sure you want to delete this?\n" +
+            "    <a href=\"#\" class=\"confirm_delete\">Yes</a> | <a href=\"#\" class=\"cancel_delete\">No</a>\n" +
+            "</span>"
+        $(this).replaceWith(confirmation);
+    });
+
     //Confirmed Deletion
     $("#categories").on('click','.confirm_delete',function(){
-        $(this).closest('li').remove();
+        $(this).closest('div').parent().closest('div').parent().closest('div').remove();
     });
 
     //Cancelled Deletion
