@@ -2,118 +2,90 @@
 <html>
 <head>
     <title>Download Sorter</title>
-    <style>
-        body {
-            padding: 10px;
-        }
-        .save {
-            float: left;
-        }
-        .defaults {
-            float: right;
-        }
-        .floatright{
-            float: right;
-        }
-        .floatleft{
-            float: left;
-        }
-        .rename {
-            float: left;
-        }
-        .delete, .delete a {
-            float: right;
-            color: red;
-        }
-        .accordion {
-            background-color: #eee;
-            color: #444;
-            cursor: pointer;
-            padding: 15px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 15px;
-            transition: 0.4s;
-        }
-
-        .active, .accordion:hover {
-            background-color: #ccc;
-        }
-
-        .accordion:after {
-            content: '\002B';
-            color: #777;
-            font-weight: bold;
-            float: right;
-            margin-left: 5px;
-        }
-
-        .active:after {
-            content: "\2212";
-        }
-
-        .panel {
-            padding: 0 18px;
-            background-color: white;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/options.css">
+    <link rel="stylesheet" type="text/css" href="css/extensions.css">
     <script src="jquery.min.js"></script>
 </head>
 
 <body>
-<input type="text" name="firstname">
-<b>Categories:</b>
-<br><br>
-<div id="categories" class="collapsible">
-    <div class="section">
-        <button class="accordion"><input type="text" name="firstname"></button>
-        <div class="panel">
-            <span>Lorem ipsum dolor sit amet.</span>
-            <hr>
-            <div class="tools">
-                <span class="rename"><a href="#">Rename</a></span>
-                <span class="delete"><a href="#">Delete</a></span>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <button class="accordion">Section 2</button>
-        <div class="panel">
-            <span>Lorem ipsum dolor sit amet.</span>
-            <hr>
-            <div class="tools">
-                <span class="rename"><a href="#">Rename</a></span>
-                <span class="delete"><a href="#">Delete</a></span>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <button class="accordion">Section 3</button>
-        <div class="panel">
-            <span>Lorem ipsum dolor sit amet.</span>
-            <hr>
-            <div class="tools">
-                <span class="rename"><a href="#">Rename</a></span>
-                <span class="delete"><a href="#">Delete</a></span>
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-<button class="add_category" id="add">+ Add Category</button>
 
-<div id="status"></div>
-<br>
-<div>
-    <button class="save" id="save">Save</button>
-    <button class="defaults" id="default">Restore Defaults</button>
+<div class="tabs">
+    <ul class="tab-links">
+        <li class="active"><a href="#tab1">Categories</a></li>
+        <li><a href="#tab2">File Extensions</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="tab1" class="tab active">
+            <div id="categories" class="collapsible">
+                <div class="section" data-editmode="false">
+                    <button class="accordion">Documents</button>
+                    <div class="panel">
+                        <br />
+                        <span>Save Directory:</span><br />
+                        <div class="directory">
+                            <span class="dir_name"><em>[default directory]\</em><b>Documents</b></span>
+                            <span class="edit_dir"><a href="#">&#9998;</a></span>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="tools">
+                            <span class="rename"><a href="#">Rename</a></span>
+                            <span class="delete"><a href="#">Delete</a></span>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="section" data-editmode="false">
+                    <button class="accordion">Pictures</button>
+                    <div class="panel">
+                        <br>
+                        <span>Lorem ipsum dolor sit amet.</span>
+                        <hr>
+                        <div class="tools">
+                            <span class="rename"><a href="#">Rename</a></span>
+                            <span class="delete"><a href="#">Delete</a></span>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="section" data-editmode="false">
+                    <button class="accordion">Music</button>
+                    <div class="panel">
+                        <br>
+                        <span>Lorem ipsum dolor sit amet.</span>
+                        <hr>
+                        <div class="tools">
+                            <span class="rename"><a href="#">Rename</a></span>
+                            <span class="delete"><a href="#">Delete</a></span>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button class="add_category" id="add">+ Add Category</button>
+            <button class="show_folder" id="show">Show Default Folder</button>
+
+            <div id="status"></div>
+            <br>
+            <div>
+                <button class="save" id="save">Save</button>
+                <button class="defaults" id="default">Restore Defaults</button>
+            </div>
+        </div>
+
+        <div id="tab2" class="tab">
+            <p>Tab #2 content goes here!</p>
+            <p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis. In hac habitasse platea dictumst. Ut euismod tempus hendrerit. Morbi ut adipiscing nisi. Etiam rutrum sodales gravida! Aliquam tellus orci, iaculis vel.</p>
+        </div>
+    </div>
 </div>
-<br>
+
+<script src="extensions.js"></script>
 <script src="options.js"></script>
 </body>
 </html>
