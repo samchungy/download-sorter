@@ -142,8 +142,24 @@ $(document).ready(function(){
         var confirmation = "<div class=\"directory\">\n" +
             "<span class=\"dir_name\"><input class=\"dir_input\" placeholder=\""+ oldtext + "\"" +
             "value=\"" + oldtext + "\"></span>" +
-            "<span class=\"edit_dir\"><a href=\"#\">&#10006;</a><a href=\"#\">&#10004;</a></span></div><br>";
+            "<span class=\"edit_dir_yes\"><a href=\"#\">&#10004;</a></span><br></div>";
         $(this).parent().replaceWith(confirmation);
+    });
+
+    //Edit Directory Confirm
+    $("#categories").on('click','.edit_dir_yes',function(){
+        $(this).parent().parent().parent().attr('data-editmode',false);
+        var newtext = "<div class=\"directory\">\n" +
+            "<span class=\"dir_name\"><em>[default directory]\\</em><b>"+ $(this).prev('span').find('input').val() +"</b></span>\n" +
+            "<span class=\"edit_dir\"><a href=\"#\">&#9998;</a></span>\n" +
+            "</div>";
+        $(this).parent().replaceWith(newtext);
+    });
+
+    //Default Directory Prompt
+    $("#categories").on('click','.popup',function(){
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
     });
 
 });
