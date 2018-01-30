@@ -58,42 +58,33 @@ body {
     transition: max-height 0.2s ease-out;
 }
 
-/* Popup container */
-.popup {
+.tooltip {
     position: relative;
     display: inline-block;
-    cursor: pointer;
+    border-bottom: 1px dotted black;
 }
 
-/* The actual popup (appears on top) */
-.popup .popuptext {
+.tooltip .tooltiptext {
     visibility: hidden;
-    width: 160px;
-    background-color: #555;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 8px 0;
+    padding: 5px 0;
+
+    /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    bottom: 125%;
+    bottom: 100%;
     left: 50%;
-    margin-left: -80px;
+    margin-left: -60px;
 }
 
-/* Popup arrow */
-.popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
+.tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+.directory{
+    padding-bottom: 5px;
 }

@@ -51,7 +51,6 @@ function show_default_folder(){
     chrome.downloads.showDefaultFolder();
 }
 
-
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click',
     save_options);
@@ -137,23 +136,44 @@ $(document).ready(function(){
 
     //Change Directory
     $("#categories").on('click','.edit_dir',function(){
-        $(this).parent().parent().parent().attr('data-editmode',true);
-        var oldtext = $(this).prev('span').find('b').text();
+        $(this).parent().parent().parent().parent().attr('data-editmode',true);
+        var oldtext = $(this).parent().find('b').text();
         var confirmation = "<div class=\"directory\">\n" +
             "<span class=\"dir_name\"><input class=\"dir_input\" placeholder=\""+ oldtext + "\"" +
             "value=\"" + oldtext + "\"></span>" +
             "<span class=\"edit_dir_yes\"><a href=\"#\">&#10004;</a></span><br></div>";
-        $(this).parent().replaceWith(confirmation);
+        $(this).parent().parent().replaceWith(confirmation);
     });
 
     //Edit Directory Confirm
     $("#categories").on('click','.edit_dir_yes',function(){
         $(this).parent().parent().parent().attr('data-editmode',false);
-        var newtext = "<div class=\"directory\">\n" +
-            "<span class=\"dir_name\"><em>[default directory]\\</em><b>"+ $(this).prev('span').find('input').val() +"</b></span>\n" +
-            "<span class=\"edit_dir\"><a href=\"#\">&#9998;</a></span>\n" +
-            "</div>";
+
+        var newtext = "                        <div class=\"directory\">\n" +
+            "                            <span>\n" +
+            "                                <div class=\"tooltip\"><em>[default directory]\\</em>\n" +
+            "                                    <span class=\"tooltiptext\">Chrome Settings > Advanced > Downloads > Location</span>\n" +
+            "                                </div>" + "<b>"+ $(this).prev('span').find('input').val()+"</b>\n" +
+            "                                <span class=\"edit_dir\"><a href=\"#\">&#9998;</a></span>\n" +
+            "                            </span>\n" +
+            "                        </div>";
         $(this).parent().replaceWith(newtext);
+    });
+
+    //Enter Key pressed Edit Directory
+    $("#categories").on('keypress','.dir_input', function(e) {
+        if (e.keyCode == 13) {
+            $(this).parent().parent().parent().parent().attr('data-editmode',false);
+            var newtext = "                        <div class=\"directory\">\n" +
+                "                            <span>\n" +
+                "                                <div class=\"tooltip\"><em>[default directory]\\</em>\n" +
+                "                                    <span class=\"tooltiptext\">Chrome Settings > Advanced > Downloads > Location</span>\n" +
+                "                                </div>" + "<b>"+ $(this).val()+"</b>\n" +
+                "                                <span class=\"edit_dir\"><a href=\"#\">&#9998;</a></span>\n" +
+                "                            </span>\n" +
+                "                        </div>";
+            $(this).parent().parent().replaceWith(newtext);
+        }
     });
 
     //Default Directory Prompt
