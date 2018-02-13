@@ -17,8 +17,6 @@ jQuery(document).ready(function() {
 });
 
 function onLoad(){
-
-
     $.each( defaults, function( key, value ) {
         $('#file_ext tr:last').after('</tr><tr><td>'+key+'</td><td>'+value+'</td></tr>');
         console.log(key);
@@ -26,16 +24,31 @@ function onLoad(){
 }
 
 function save_file_extensions(){
-    chrome.storage.sync.set(defaults
-    , function() {
-        // Update status to let user know options were saved.
-        var status = document.getElementById('status');
-        status.textContent = 'Options saved.';
-        setTimeout(function() {
-            status.textContent = '';
-        }, 750);
+    //Store Titles
+    var titles = [];
+    $('#file_ext td:nth-child(1)').each(function() {
+        titles.push($(this).text());
     });
+    if(titles != []){
+        chrome.storage.sync.set({file_ext_titles:titles});
+    }
+
+    // chrome.storage.sync.get({
+    //     file_ext_titles: []
+    // }, function(items) {
+    //     console.log(items.file_ext_titles);
+    // });
+
+    // chrome.storage.sync.set(defaults
+    // , function() {
+    //     // Update status to let user know options were saved.
+    //     var status = document.getElementById('status');
+    //     status.textContent = 'Options saved.';
+    //     setTimeout(function() {
+    //         status.textContent = '';
+    //     }, 750);
+    // });
 }
 document.getElementById('save_file_ext').addEventListener('click',
-    save_options);
+    save_file_extensions);
 document.addEventListener('DOMContentLoaded', onLoad);
